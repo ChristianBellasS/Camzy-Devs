@@ -752,7 +752,7 @@ export default function HomePage() {
           <div className="camzy-team__member">
             <div className="camzy-team__image-container">
               <img
-                src={`${import.meta.env.BASE_URL}equipo/luis-arroyo.png`}
+                src={`${import.meta.env.BASE_URL}equipo/Luis Arroyo.png`}
                 alt="Luis Arroyo"
                 className="camzy-team__image"
                 onError={(e) => {
