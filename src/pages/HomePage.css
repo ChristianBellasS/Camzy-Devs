@@ -1374,3 +1374,34 @@ body {
     align-items: center;
   }
 }
+
+.camzy-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.camzy-logo__image {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.camzy-logo__text {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.camzy-logo__cursor {
+  font-weight: 800;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}

@@ -354,6 +354,7 @@ export default function HomePage() {
       <header className="camzy-header">
         <div className="camzy-header__container">
           <div className="camzy-logo">
+            <img src={`${import.meta.env.BASE_URL}logo/Camzy.png`} alt="CAMZY Logo" className="camzy-logo__image" />
             <span className="camzy-logo__text">CAMZY</span>
             <span className="camzy-logo__cursor">_</span>
           </div>
