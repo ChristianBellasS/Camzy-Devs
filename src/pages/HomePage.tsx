@@ -752,7 +752,7 @@ export default function HomePage() {
           <div className="camzy-team__member">
             <div className="camzy-team__image-container">
               <img
-                src="/equipo/Luis Arroyo.png"
+                src={`${import.meta.env.BASE_URL}equipo/luis-arroyo.png`}
                 alt="Luis Arroyo"
                 className="camzy-team__image"
                 onError={(e) => {
@@ -784,7 +784,7 @@ export default function HomePage() {
           <div className="camzy-team__member">
             <div className="camzy-team__image-container">
               <img
-                src="/equipo/Christian Bellasmil.jpeg"
+                src={`${import.meta.env.BASE_URL}equipo/Christian Bellasmil.jpeg`}
                 alt="Christian Bellasmil"
                 className="camzy-team__image"
                 onError={(e) => {
@@ -820,7 +820,7 @@ export default function HomePage() {
           <div className="camzy-team__member">
             <div className="camzy-team__image-container">
               <img
-                src="/equipo/Alejandro Purizaca.jpeg"
+                src={`${import.meta.env.BASE_URL}equipo/Alejandro Purizaca.jpeg`}
                 alt="Alejandro Purizaca"
                 className="camzy-team__image"
                 onError={(e) => {
