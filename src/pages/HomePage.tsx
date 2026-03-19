@@ -961,9 +961,9 @@ export default function HomePage() {
         </div>
 
         <div className="camzy-footer__bottom">
-          <p>© 2024 CAMZY Tech. Todos los derechos reservados.</p>
+          <p>© 2026 CAMZY Tech. Todos los derechos reservados.</p>
           <div className="camzy-footer__badge">
-            <FaHeart /> Made with love in Spain
+            <FaHeart /> Made with love in Perú
           </div>
         </div>
       </footer>
