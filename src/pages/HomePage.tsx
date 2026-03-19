@@ -207,7 +207,7 @@ export default function HomePage() {
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/34900000000?text=%C2%A1Hola!%20Quiero%20informaci%C3%B3n%20sobre%20sus%20servicios",
+      "https://wa.me/51944830496?text=%C2%A1Hola!%20Quiero%20informaci%C3%B3n%20sobre%20sus%20servicios",
       "_blank"
     );
   };
