@@ -206,10 +206,11 @@ export default function HomePage() {
   };
 
   const handleWhatsApp = () => {
-    window.open(
-      "https://wa.me/51944830496?text=%F0%9F%91%8B%20%C2%A1Hola!%20Estoy%20interesado%20en%20sus%20servicios%20tecnol%C3%B3gicos%20%F0%9F%92%BB%E2%9C%A8%0A%0A%C2%BFPodr%C3%ADan%20compartirme%20m%C3%A1s%20informaci%C3%B3n%20y%20asesorarme%3F%20%F0%9F%99%8C",
-      "_blank"
-    );
+    const phone = "51944830496";
+    const message =
+      "👋 ¡Hola! Estoy interesado en sus servicios tecnológicos 🚀💻 ¿Podrían compartirme más información y asesorarme?";
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
   };
 
   const handleScroll = (id: string) => {
