@@ -84,6 +84,7 @@ export default function HomePage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showAllProjects, setShowAllProjects] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const projects: Project[] = [
     {
@@ -218,6 +219,11 @@ export default function HomePage() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+    setMenuOpen(false);
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   const openProjectModal = (project: Project) => {
@@ -264,13 +270,13 @@ export default function HomePage() {
       const progress = step / steps;
 
       setCounts({
-        proyectos: Math.floor(10 * progress),
+        proyectos: Math.floor(8 * progress),
         expertos: Math.floor(3 * progress),
         clientes: Math.floor(20 * progress),
       });
 
       if (step >= steps) {
-        setCounts({ proyectos: 10, expertos: 3, clientes: 20 });
+        setCounts({ proyectos: 8, expertos: 3, clientes: 20 });
         clearInterval(timer);
       }
     }, interval);
@@ -359,7 +365,20 @@ export default function HomePage() {
             <span className="camzy-logo__cursor">_</span>
           </div>
 
-          <nav className="camzy-nav">
+          <button className="camzy-btn camzy-btn--outline" onClick={handleContact}>
+            <FaEnvelope /> HABLEMOS
+          </button>
+
+          <div 
+            className={`camzy-menu-toggle ${menuOpen ? 'active' : ''}`} 
+            onClick={toggleMenu}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <nav className={`camzy-nav ${menuOpen ? 'open' : ''}`}>
             <a
               href="#inicio"
               onClick={(e) => {
@@ -411,10 +430,6 @@ export default function HomePage() {
               CONTACTO
             </a>
           </nav>
-
-          <button className="camzy-btn camzy-btn--outline" onClick={handleContact}>
-            <FaEnvelope /> HABLEMOS
-          </button>
         </div>
       </header>
 
@@ -455,7 +470,7 @@ export default function HomePage() {
               <span className="camzy-stats__label">Proyectos</span>
               <div
                 className="camzy-stats__bar"
-                style={{ width: `${(counts.proyectos / 10) * 100}%` }}
+                style={{ width: `${(counts.proyectos / 8) * 100}%` }}
               ></div>
             </div>
 
