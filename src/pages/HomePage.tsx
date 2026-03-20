@@ -837,6 +837,41 @@ export default function HomePage() {
           <div className="camzy-team__member">
             <div className="camzy-team__image-container">
               <img
+                src={`${import.meta.env.BASE_URL}equipo/AlexisChaname.jpeg`}
+                alt="Alexis Chaname"
+                className="camzy-team__image"
+                onError={(e) => {
+                  e.currentTarget.src =
+                    "https://via.placeholder.com/300x300/1A1A1A/FF00FF?text=ALEXIS";
+                }}
+              />
+            </div>
+            <h3>Alexis Chanamé</h3>
+            <p className="camzy-team__role">Software Architect & System Design</p>
+            <p className="camzy-team__bio">
+              Especialista en diseño de sistemas escalables y definición de arquitecturas modernas.
+            </p>
+            <div className="camzy-team__social">
+              <a
+                href="https://github.com/AlexD-13/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaGithub />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/alexis-chaname/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaLinkedin />
+              </a>
+            </div>
+          </div>
+
+          <div className="camzy-team__member">
+            <div className="camzy-team__image-container">
+              <img
                 src={`${import.meta.env.BASE_URL}equipo/Alejandro Purizaca.jpeg`}
                 alt="Alejandro Purizaca"
                 className="camzy-team__image"
@@ -868,10 +903,11 @@ export default function HomePage() {
               </a>
             </div>
           </div>
+
         </div>
 
         <div className="camzy-team__badge">
-          <FaUsers /> +3 talentos en expansión
+          <FaUsers /> +4 talentos en expansión
         </div>
       </section>
 
