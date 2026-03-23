@@ -1165,7 +1165,7 @@ a {
   color: var(--magenta);
 }
 
-/* ===== MODAL ULTRA ENHANCED - IMAGEN PROTAGONISTA ===== */
+/* ===== MODAL ENHANCED - IMAGEN PROTAGONISTA CON RESPONSIVE ===== */
 .camzy-modal {
   position: fixed;
   inset: 0;
@@ -1192,10 +1192,10 @@ a {
 
 .camzy-modal__content {
   position: relative;
-  width: min(1400px, 95%);
-  max-height: 90vh;
+  width: min(1300px, 92%);
+  max-height: 88vh;
   overflow: hidden;
-  border-radius: 40px;
+  border-radius: 36px;
   background: linear-gradient(135deg, rgba(10, 10, 16, 0.98), rgba(8, 8, 12, 0.98));
   border: 1px solid rgba(255, 0, 212, 0.5);
   box-shadow: 
@@ -1218,13 +1218,12 @@ a {
   }
 }
 
-/* Close Button - More prominent */
 .camzy-modal__close {
   position: absolute;
-  top: 28px;
-  right: 28px;
-  width: 52px;
-  height: 52px;
+  top: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
   z-index: 30;
   border-radius: 50%;
   border: 1px solid rgba(255, 0, 212, 0.5);
@@ -1239,13 +1238,12 @@ a {
 }
 
 .camzy-modal__close:hover {
-  transform: rotate(90deg) scale(1.1);
+  transform: rotate(90deg) scale(1.08);
   background: rgba(255, 0, 212, 0.45);
   border-color: var(--magenta);
   box-shadow: 0 0 30px rgba(255, 0, 212, 0.6);
 }
 
-/* Gallery Layout - Image gets more space (55/45) */
 .camzy-modal__gallery {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -1254,23 +1252,21 @@ a {
   flex: 1;
 }
 
-/* ===== IMAGE SECTION - PROTAGONIST ===== */
 .camzy-modal__image-section {
   position: relative;
   background: linear-gradient(145deg, #030305, #000000);
   display: flex;
   flex-direction: column;
   border-right: 1px solid rgba(255, 0, 212, 0.35);
-  padding: 32px 28px 28px 32px;
+  padding: 28px 24px 24px 28px;
 }
 
-/* Image Container with Glow Effect */
 .camzy-modal__image-container {
   position: relative;
   flex: 1;
   min-height: 0;
   overflow: hidden;
-  border-radius: 28px;
+  border-radius: 24px;
   background: #000;
   display: flex;
   align-items: center;
@@ -1291,7 +1287,6 @@ a {
     0 0 50px rgba(255, 0, 212, 0.35);
 }
 
-/* Main Image - Larger and with zoom effect */
 .camzy-modal__image {
   max-width: 95%;
   max-height: 95%;
@@ -1300,7 +1295,7 @@ a {
   object-fit: contain;
   transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   cursor: zoom-in;
-  border-radius: 20px;
+  border-radius: 18px;
   filter: brightness(1.02) contrast(1.05);
 }
 
@@ -1309,7 +1304,6 @@ a {
   filter: brightness(1.05) contrast(1.08);
 }
 
-/* Decorative Glow Effect Behind Image */
 .camzy-modal__image-container::before {
   content: '';
   position: absolute;
@@ -1325,13 +1319,12 @@ a {
   opacity: 0.6;
 }
 
-/* Navigation Buttons - More prominent */
 .camzy-modal__nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.25);
   background: rgba(0, 0, 0, 0.8);
@@ -1348,28 +1341,27 @@ a {
 .camzy-modal__nav:hover {
   background: rgba(255, 0, 212, 0.7);
   border-color: var(--magenta);
-  transform: translateY(-50%) scale(1.15);
+  transform: translateY(-50%) scale(1.12);
   box-shadow: 0 0 25px rgba(255, 0, 212, 0.6);
 }
 
 .camzy-modal__nav--prev {
-  left: 32px;
+  left: 24px;
 }
 
 .camzy-modal__nav--next {
-  right: 32px;
+  right: 24px;
 }
 
-/* Image Counter - Stylish */
 .camzy-modal__image-counter {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 16px;
+  right: 16px;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(12px);
-  padding: 8px 18px;
+  padding: 6px 16px;
   border-radius: 999px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--cyan);
   border: 1px solid rgba(0, 247, 255, 0.45);
@@ -1379,18 +1371,17 @@ a {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Thumbnails - More interactive */
 .camzy-modal__thumbnails {
   display: flex;
-  gap: 14px;
-  padding: 24px 0 0 0;
+  gap: 12px;
+  padding: 20px 0 0 0;
   overflow-x: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--magenta) rgba(255, 255, 255, 0.1);
 }
 
 .camzy-modal__thumbnails::-webkit-scrollbar {
-  height: 5px;
+  height: 4px;
 }
 
 .camzy-modal__thumbnails::-webkit-scrollbar-track {
@@ -1404,11 +1395,11 @@ a {
 }
 
 .camzy-modal__thumbnail {
-  width: 85px;
-  height: 64px;
+  width: 80px;
+  height: 60px;
   flex: 0 0 auto;
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: 14px;
   cursor: pointer;
   opacity: 0.5;
   border: 2px solid transparent;
@@ -1433,33 +1424,32 @@ a {
 
 .camzy-modal__thumbnail:hover {
   opacity: 0.9;
-  transform: translateY(-4px) scale(1.02);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .camzy-modal__thumbnail.active {
   opacity: 1;
   border-color: var(--magenta);
-  box-shadow: 0 0 20px rgba(255, 0, 212, 0.6);
-  transform: translateY(-4px);
+  box-shadow: 0 0 18px rgba(255, 0, 212, 0.6);
+  transform: translateY(-3px);
 }
 
 .camzy-modal__thumbnail.active::after {
   opacity: 1;
 }
 
-/* ===== INFO SECTION - Elegant ===== */
 .camzy-modal__info {
-  padding: 36px 40px 36px 32px;
+  padding: 32px 36px 32px 32px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 20px;
   scrollbar-width: thin;
   background: linear-gradient(135deg, rgba(12, 12, 18, 0.6), rgba(8, 8, 12, 0.6));
 }
 
 .camzy-modal__info::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 
 .camzy-modal__info::-webkit-scrollbar-track {
@@ -1472,14 +1462,13 @@ a {
   border-radius: 4px;
 }
 
-/* Header Section */
 .camzy-modal__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .camzy-modal__number-badge {
@@ -1489,9 +1478,9 @@ a {
   background: rgba(255, 0, 212, 0.2);
   border: 1px solid rgba(255, 0, 212, 0.4);
   border-radius: 999px;
-  padding: 8px 20px;
+  padding: 6px 18px;
   width: fit-content;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 800;
   color: var(--magenta);
   letter-spacing: 0.05em;
@@ -1499,7 +1488,7 @@ a {
 }
 
 .camzy-modal__number-badge span {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 900;
 }
 
@@ -1510,52 +1499,49 @@ a {
   background: rgba(0, 247, 255, 0.12);
   border: 1px solid rgba(0, 247, 255, 0.35);
   border-radius: 999px;
-  padding: 8px 20px;
-  font-size: 0.9rem;
+  padding: 6px 18px;
+  font-size: 0.85rem;
   font-weight: 700;
   color: #8eedff;
   backdrop-filter: blur(4px);
 }
 
 .camzy-modal__stats-badge svg {
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
-/* Title */
 .camzy-modal__info h2 {
-  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
   line-height: 1.3;
   font-weight: 800;
   background: linear-gradient(135deg, #fff, var(--cyan), var(--magenta));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin: 12px 0 8px;
+  margin: 8px 0 4px;
 }
 
-/* Description */
 .camzy-modal__description {
   color: var(--text-soft);
-  line-height: 1.8;
-  font-size: 0.96rem;
-  margin: 8px 0;
+  line-height: 1.75;
+  font-size: 0.94rem;
+  margin: 6px 0;
 }
 
-/* Tags */
 .camzy-modal__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin: 12px 0;
+  gap: 10px;
+  margin: 8px 0;
 }
 
 .camzy-modal__tag {
-  padding: 8px 18px;
+  padding: 6px 16px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(0, 247, 255, 0.3);
   color: var(--cyan);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   transition: all 0.3s ease;
 }
@@ -1567,22 +1553,21 @@ a {
   box-shadow: 0 4px 12px rgba(0, 247, 255, 0.2);
 }
 
-/* Metrics Grid */
 .camzy-modal__metrics {
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 24px;
-  padding: 20px 24px;
-  margin: 16px 0;
+  border-radius: 20px;
+  padding: 18px 20px;
+  margin: 12px 0;
   border: 1px solid rgba(255, 0, 212, 0.2);
   backdrop-filter: blur(4px);
 }
 
 .camzy-modal__metrics-title {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--magenta);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   font-weight: 800;
   display: flex;
   align-items: center;
@@ -1592,33 +1577,33 @@ a {
 .camzy-modal__metrics-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
 
 .camzy-modal__metric-item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 10px 14px;
+  gap: 12px;
+  padding: 8px 12px;
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 16px;
+  border-radius: 14px;
   transition: all 0.3s ease;
 }
 
 .camzy-modal__metric-item:hover {
   background: rgba(255, 0, 212, 0.1);
-  transform: translateX(6px);
+  transform: translateX(4px);
 }
 
 .camzy-modal__metric-icon {
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   display: grid;
   place-items: center;
   background: linear-gradient(135deg, rgba(255, 0, 212, 0.15), rgba(0, 247, 255, 0.1));
-  border-radius: 14px;
+  border-radius: 12px;
   color: var(--cyan);
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .camzy-modal__metric-info {
@@ -1626,7 +1611,7 @@ a {
 }
 
 .camzy-modal__metric-label {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1634,43 +1619,41 @@ a {
 }
 
 .camzy-modal__metric-value {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 800;
   color: #fff;
   font-family: monospace;
 }
 
-/* Gallery Info */
 .camzy-modal__gallery-info {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   color: var(--muted);
-  font-size: 0.85rem;
-  padding: 8px 0;
+  font-size: 0.8rem;
+  padding: 6px 0;
 }
 
 .camzy-modal__gallery-info svg {
   color: var(--cyan);
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
-/* Action Buttons */
 .camzy-modal__actions {
   display: flex;
-  gap: 18px;
-  margin-top: 28px;
+  gap: 16px;
+  margin-top: 20px;
   flex-wrap: wrap;
 }
 
 .camzy-modal__btn {
-  padding: 14px 32px;
-  border-radius: 16px;
+  padding: 12px 28px;
+  border-radius: 14px;
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   border: 1px solid transparent;
@@ -1679,12 +1662,12 @@ a {
 .camzy-modal__btn--primary {
   background: linear-gradient(135deg, var(--magenta), #ff60e0);
   color: #fff;
-  box-shadow: 0 8px 24px rgba(255, 0, 212, 0.35);
+  box-shadow: 0 6px 20px rgba(255, 0, 212, 0.35);
 }
 
 .camzy-modal__btn--primary:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(255, 0, 212, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(255, 0, 212, 0.5);
 }
 
 .camzy-modal__btn--secondary {
@@ -1695,15 +1678,21 @@ a {
 
 .camzy-modal__btn--secondary:hover {
   background: rgba(0, 247, 255, 0.15);
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: var(--cyan);
-  box-shadow: 0 8px 24px rgba(0, 247, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 247, 255, 0.2);
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1000px) {
+/* ===== MODAL RESPONSIVE ===== */
+@media (max-width: 1100px) {
   .camzy-modal__metrics-grid {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .camzy-modal__thumbnail {
+    width: 70px;
+    height: 52px;
   }
 }
 
@@ -1716,16 +1705,17 @@ a {
   .camzy-modal__image-section {
     border-right: none;
     border-bottom: 1px solid rgba(255, 0, 212, 0.3);
-    padding: 24px;
+    padding: 20px;
   }
   
   .camzy-modal__image-container {
-    min-height: 380px;
+    min-height: 340px;
   }
   
   .camzy-modal__info {
-    padding: 28px;
+    padding: 24px;
     max-height: 420px;
+    gap: 16px;
   }
   
   .camzy-modal__content {
@@ -1733,27 +1723,16 @@ a {
   }
   
   .camzy-modal__nav--prev {
-    left: 24px;
+    left: 16px;
   }
   
   .camzy-modal__nav--next {
-    right: 24px;
+    right: 16px;
   }
   
   .camzy-modal__nav {
-    width: 44px;
-    height: 44px;
-  }
-}
-
-@media (max-width: 600px) {
-  .camzy-modal__image-container {
-    min-height: 280px;
-  }
-  
-  .camzy-modal__info {
-    padding: 20px;
-    gap: 16px;
+    width: 42px;
+    height: 42px;
   }
   
   .camzy-modal__close {
@@ -1764,49 +1743,85 @@ a {
   }
   
   .camzy-modal__thumbnail {
-    width: 70px;
-    height: 52px;
-  }
-  
-  .camzy-modal__btn {
-    padding: 10px 24px;
-    font-size: 0.85rem;
+    width: 75px;
+    height: 56px;
   }
   
   .camzy-modal__info h2 {
-    font-size: 1.3rem;
-  }
-  
-  .camzy-modal__metrics {
-    padding: 16px;
-  }
-  
-  .camzy-modal__metric-icon {
-    width: 36px;
-    height: 36px;
+    font-size: 1.4rem;
   }
 }
 
-@media (max-width: 480px) {
-  .camzy-modal__image-container {
-    min-height: 240px;
+@media (max-width: 600px) {
+  .camzy-modal {
+    padding: 12px;
   }
   
-  .camzy-modal__actions {
-    flex-direction: column;
-  }
-  
-  .camzy-modal__btn {
-    justify-content: center;
+  .camzy-modal__content {
+    width: 96%;
+    border-radius: 28px;
   }
   
   .camzy-modal__image-section {
     padding: 16px;
   }
   
-  .camzy-modal__header {
-    flex-direction: column;
-    align-items: flex-start;
+  .camzy-modal__image-container {
+    min-height: 260px;
+    border-radius: 20px;
+  }
+  
+  .camzy-modal__info {
+    padding: 18px;
+    gap: 14px;
+  }
+  
+  .camzy-modal__close {
+    width: 40px;
+    height: 40px;
+    top: 12px;
+    right: 12px;
+    font-size: 1rem;
+  }
+  
+  .camzy-modal__thumbnail {
+    width: 65px;
+    height: 48px;
+    border-radius: 10px;
+  }
+  
+  .camzy-modal__btn {
+    padding: 10px 22px;
+    font-size: 0.85rem;
+  }
+  
+  .camzy-modal__info h2 {
+    font-size: 1.2rem;
+  }
+  
+  .camzy-modal__description {
+    font-size: 0.86rem;
+    line-height: 1.65;
+  }
+  
+  .camzy-modal__metrics {
+    padding: 14px;
+    margin: 8px 0;
+  }
+  
+  .camzy-modal__metrics-title {
+    font-size: 0.75rem;
+    margin-bottom: 12px;
+  }
+  
+  .camzy-modal__metric-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 0.9rem;
+  }
+  
+  .camzy-modal__metric-value {
+    font-size: 0.88rem;
   }
   
   .camzy-modal__nav {
@@ -1821,11 +1836,98 @@ a {
   .camzy-modal__nav--next {
     right: 12px;
   }
+  
+  .camzy-modal__image-counter {
+    padding: 4px 12px;
+    font-size: 0.7rem;
+    bottom: 12px;
+    right: 12px;
+  }
+  
+  .camzy-modal__number-badge,
+  .camzy-modal__stats-badge {
+    padding: 4px 14px;
+    font-size: 0.75rem;
+  }
+  
+  .camzy-modal__tag {
+    padding: 5px 12px;
+    font-size: 0.75rem;
+  }
+  
+  .camzy-modal__actions {
+    gap: 12px;
+    margin-top: 16px;
+  }
 }
 
-/* ===== RESPONSIVE BREAKPOINTS ===== */
+@media (max-width: 480px) {
+  .camzy-modal__image-container {
+    min-height: 220px;
+  }
+  
+  .camzy-modal__actions {
+    flex-direction: column;
+  }
+  
+  .camzy-modal__btn {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .camzy-modal__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .camzy-modal__thumbnail {
+    width: 55px;
+    height: 42px;
+  }
+  
+  .camzy-modal__thumbnails {
+    gap: 8px;
+    padding: 12px 0 0 0;
+  }
+  
+  .camzy-modal__info h2 {
+    font-size: 1.1rem;
+  }
+  
+  .camzy-modal__metrics-grid {
+    gap: 8px;
+  }
+  
+  .camzy-modal__metric-item {
+    padding: 6px 10px;
+  }
+  
+  .camzy-modal__nav {
+    width: 34px;
+    height: 34px;
+  }
+  
+  .camzy-modal__nav--prev {
+    left: 8px;
+  }
+  
+  .camzy-modal__nav--next {
+    right: 8px;
+  }
+}
 
-/* Laptops grandes / Desktop */
+@media (min-height: 900px) and (max-width: 900px) {
+  .camzy-modal__info {
+    max-height: 480px;
+  }
+  
+  .camzy-modal__image-container {
+    min-height: 400px;
+  }
+}
+
+/* ===== RESPONSIVE BREAKPOINTS GENERALES ===== */
 @media (max-width: 1180px) {
   .camzy-services__grid,
   .camzy-tech-groups {
@@ -1835,13 +1937,8 @@ a {
   .camzy-team__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  .camzy-modal__gallery {
-    grid-template-columns: 1fr;
-  }
 }
 
-/* Tablets / Laptops pequeños */
 @media (max-width: 980px) {
   .camzy-header__container {
     flex-wrap: wrap;
@@ -1909,7 +2006,6 @@ a {
   }
 }
 
-/* Tablets pequeñas / Móviles grandes */
 @media (max-width: 768px) {
   .camzy-services__grid,
   .camzy-tech-groups,
@@ -1930,7 +2026,6 @@ a {
     overflow: hidden;
   }
 
-  /* Servicios */
   .camzy-service__icon {
     width: 52px;
     height: 52px;
@@ -1949,7 +2044,6 @@ a {
     line-height: 1.65;
   }
 
-  /* Tecnologías */
   .camzy-tech-group h3 {
     font-size: 1rem;
     margin-bottom: 12px;
@@ -1970,7 +2064,6 @@ a {
     font-size: 0.88rem;
   }
 
-  /* Proyectos */
   .camzy-project {
     display: flex;
     flex-direction: column;
@@ -2035,7 +2128,6 @@ a {
     text-align: center;
   }
 
-  /* Equipo */
   .camzy-team__member {
     text-align: center;
   }
@@ -2095,7 +2187,6 @@ a {
   }
 }
 
-/* Móviles */
 @media (max-width: 560px) {
   .camzy-header__container {
     padding: 10px 12px;
@@ -2138,7 +2229,6 @@ a {
     border-radius: 16px;
   }
 
-  /* Proyectos compactos */
   .camzy-project__number {
     font-size: 1.8rem;
     top: 10px;
@@ -2171,7 +2261,6 @@ a {
     font-size: 0.8rem;
   }
 
-  /* Equipo compacto */
   .camzy-team__image-container {
     width: 96px;
     height: 96px;
@@ -2189,7 +2278,6 @@ a {
     font-size: 0.84rem;
   }
 
-  /* Servicios y Tech */
   .camzy-service h3,
   .camzy-tech-group h3 {
     font-size: 0.98rem;
@@ -2210,7 +2298,6 @@ a {
   }
 }
 
-/* Móviles muy pequeños */
 @media (max-width: 380px) {
   .camzy-header__container {
     padding: 8px 10px;
@@ -2260,7 +2347,6 @@ a {
   }
 }
 
-/* Preferencias de movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -2316,7 +2402,6 @@ a {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* ===== HEADER RESPONSIVE ===== */
 @media (max-width: 980px) {
   .camzy-header__container {
     flex-wrap: wrap;
