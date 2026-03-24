@@ -37,6 +37,8 @@ import {
   FaBrain,
   FaMobile,
   FaArrowUp,
+  FaSun,
+  FaMoon,
 } from "react-icons/fa";
 import {
   SiKubernetes,
@@ -70,10 +72,16 @@ export default function HomePage() {
     clientes: 0,
   });
 
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light" || savedTheme === "dark") return savedTheme;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  });
+
   const statsRef = useRef<HTMLDivElement>(null);
 
   const [terminalText, setTerminalText] = useState<string[]>([
-    "<span class='camzy-terminal__prompt'>$</span> npm create camzy-app",
+    "<span class='kamzy-terminal__prompt'>$</span> npm create kamzy-app",
     "",
     "",
     "",
@@ -88,6 +96,11 @@ export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Logo según el tema
+  const logoSrc = theme === "light" 
+    ? `${import.meta.env.BASE_URL}logo/Kamzy1.png`
+    : `${import.meta.env.BASE_URL}logo/Kamzy.png`;
 
   const projects: Project[] = [
     {
@@ -236,8 +249,21 @@ export default function HomePage() {
     },
   ];
 
+  const toggleTheme = () => {
+    setTheme((prev) => {
+      const newTheme = prev === "light" ? "dark" : "light";
+      localStorage.setItem("theme", newTheme);
+      document.documentElement.setAttribute("data-theme", newTheme);
+      return newTheme;
+    });
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   const handleContact = () => {
-    window.location.href = "mailto:camzy.techx@gmail.com";
+    window.location.href = "mailto:kamzy.techx@gmail.com";
   };
 
   const handleWhatsApp = () => {
@@ -337,12 +363,12 @@ export default function HomePage() {
 
   useEffect(() => {
     const lines = [
-      "<span class='camzy-terminal__prompt'>$</span> npm create camzy-app",
-      "<span class='camzy-terminal__output'>✓</span> Proyecto inicializado",
-      "<span class='camzy-terminal__prompt'>$</span> git push origin main",
-      "<span class='camzy-terminal__output'>✓</span> Despliegue exitoso",
-      "<span class='camzy-terminal__prompt'>$</span> ls proyectos/",
-      `<span class='camzy-terminal__output'>${projects.length}+ proyectos completados</span>`,
+      "<span class='kamzy-terminal__prompt'>$</span> npm create kamzy-app",
+      "<span class='kamzy-terminal__output'>✓</span> Proyecto inicializado",
+      "<span class='kamzy-terminal__prompt'>$</span> git push origin main",
+      "<span class='kamzy-terminal__output'>✓</span> Despliegue exitoso",
+      "<span class='kamzy-terminal__prompt'>$</span> ls proyectos/",
+      `<span class='kamzy-terminal__output'>${projects.length}+ proyectos completados</span>`,
     ];
 
     if (terminalIndex < lines.length) {
@@ -382,29 +408,33 @@ export default function HomePage() {
   }, [isModalOpen, selectedProject]);
 
   return (
-    <main className="camzy-landing">
-      <div className="camzy-bg" aria-hidden="true">
-        <div className="camzy-grid"></div>
-        <div className="camzy-particles"></div>
-        <div className="camzy-glow camzy-glow--magenta"></div>
-        <div className="camzy-glow camzy-glow--cyan"></div>
-        <div className="camzy-scanlines"></div>
+    <main className="kamzy-landing" data-theme={theme}>
+      <div className="kamzy-bg" aria-hidden="true">
+        <div className="kamzy-grid"></div>
+        <div className="kamzy-particles"></div>
+        <div className="kamzy-glow kamzy-glow--accent"></div>
+        <div className="kamzy-glow kamzy-glow--light"></div>
+        <div className="kamzy-scanlines"></div>
       </div>
 
-      <header className="camzy-header">
-        <div className="camzy-header__container">
-          <div className="camzy-logo">
-            <img src={`${import.meta.env.BASE_URL}logo/Camzy.png`} alt="CAMZY Logo" className="camzy-logo__image" />
-            <span className="camzy-logo__text">CAMZY</span>
-            <span className="camzy-logo__cursor">_</span>
+      <header className="kamzy-header">
+        <div className="kamzy-header__container">
+          <div className="kamzy-logo">
+            <img src={logoSrc} alt="KAMZY Logo" className="kamzy-logo__image" />
+            <span className="kamzy-logo__text">KAMZY</span>
+            <span className="kamzy-logo__cursor">_</span>
           </div>
 
-          <button className="camzy-btn camzy-btn--outline" onClick={handleContact}>
+          <button className="kamzy-theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+            {theme === "light" ? <FaMoon /> : <FaSun />}
+          </button>
+
+          <button className="kamzy-btn kamzy-btn--outline" onClick={handleContact}>
             <FaEnvelope /> HABLEMOS
           </button>
 
           <div 
-            className={`camzy-menu-toggle ${menuOpen ? 'active' : ''}`} 
+            className={`kamzy-menu-toggle ${menuOpen ? 'active' : ''}`} 
             onClick={toggleMenu}
           >
             <span></span>
@@ -412,14 +442,14 @@ export default function HomePage() {
             <span></span>
           </div>
 
-          <nav className={`camzy-nav ${menuOpen ? 'open' : ''}`}>
+          <nav className={`kamzy-nav ${menuOpen ? 'open' : ''}`}>
             <a
               href="#inicio"
               onClick={(e) => {
                 e.preventDefault();
                 handleScroll("inicio");
               }}
-              className="camzy-nav__link"
+              className="kamzy-nav__link"
             >
               INICIO
             </a>
@@ -429,7 +459,7 @@ export default function HomePage() {
                 e.preventDefault();
                 handleScroll("servicios");
               }}
-              className="camzy-nav__link"
+              className="kamzy-nav__link"
             >
               SERVICIOS
             </a>
@@ -439,7 +469,7 @@ export default function HomePage() {
                 e.preventDefault();
                 handleScroll("proyectos");
               }}
-              className="camzy-nav__link"
+              className="kamzy-nav__link"
             >
               PROYECTOS
             </a>
@@ -449,7 +479,7 @@ export default function HomePage() {
                 e.preventDefault();
                 handleScroll("equipo");
               }}
-              className="camzy-nav__link"
+              className="kamzy-nav__link"
             >
               EQUIPO
             </a>
@@ -459,7 +489,7 @@ export default function HomePage() {
                 e.preventDefault();
                 handleScroll("contacto");
               }}
-              className="camzy-nav__link"
+              className="kamzy-nav__link"
             >
               CONTACTO
             </a>
@@ -467,101 +497,101 @@ export default function HomePage() {
         </div>
       </header>
 
-      <section className="camzy-hero" id="inicio">
-        <div className="camzy-hero__content">
-          <div className="camzy-tagline">
-            <span className="camzy-tagline__line"></span>
-            <span className="camzy-tagline__text">FULL-STACK · CLOUD · IA</span>
-            <span className="camzy-tagline__line"></span>
+      <section className="kamzy-hero" id="inicio">
+        <div className="kamzy-hero__content">
+          <div className="kamzy-tagline">
+            <span className="kamzy-tagline__line"></span>
+            <span className="kamzy-tagline__text">FULL-STACK · CLOUD · IA</span>
+            <span className="kamzy-tagline__line"></span>
           </div>
 
-          <h1 className="camzy-hero__title">
+          <h1 className="kamzy-hero__title">
             TECNOLOGÍA
-            <span className="camzy-hero__title--outline"> SIN LÍMITES</span>
+            <span className="kamzy-hero__title--outline"> SIN LÍMITES</span>
           </h1>
 
-          <p className="camzy-hero__description">
+          <p className="kamzy-hero__description">
             Desarrollamos soluciones digitales que rompen esquemas. Arquitectura
             cloud, inteligencia artificial y desarrollo a medida para empresas que
             quieren liderar.
           </p>
 
-          <div className="camzy-hero__actions">
-            <button className="camzy-btn camzy-btn--primary" onClick={handleContact}>
+          <div className="kamzy-hero__actions">
+            <button className="kamzy-btn kamzy-btn--primary" onClick={handleContact}>
               HABLEMOS <FaArrowRight />
             </button>
             <button
-              className="camzy-btn camzy-btn--secondary"
+              className="kamzy-btn kamzy-btn--secondary"
               onClick={() => handleScroll("proyectos")}
             >
               <FaPlay /> VER PROYECTOS
             </button>
           </div>
 
-          <div className="camzy-stats" ref={statsRef}>
-            <div className="camzy-stats__item">
-              <span className="camzy-stats__number">{counts.proyectos}+</span>
-              <span className="camzy-stats__label">Proyectos</span>
+          <div className="kamzy-stats" ref={statsRef}>
+            <div className="kamzy-stats__item">
+              <span className="kamzy-stats__number">{counts.proyectos}+</span>
+              <span className="kamzy-stats__label">Proyectos</span>
               <div
-                className="camzy-stats__bar"
+                className="kamzy-stats__bar"
                 style={{ width: `${(counts.proyectos / 8) * 100}%` }}
               ></div>
             </div>
 
-            <div className="camzy-stats__item">
-              <span className="camzy-stats__number">{counts.expertos}+</span>
-              <span className="camzy-stats__label">Expertos</span>
+            <div className="kamzy-stats__item">
+              <span className="kamzy-stats__number">{counts.expertos}+</span>
+              <span className="kamzy-stats__label">Expertos</span>
               <div
-                className="camzy-stats__bar"
+                className="kamzy-stats__bar"
                 style={{ width: `${(counts.expertos / 3) * 100}%` }}
               ></div>
             </div>
 
-            <div className="camzy-stats__item">
-              <span className="camzy-stats__number">{counts.clientes}+</span>
-              <span className="camzy-stats__label">Tecnologías</span>
+            <div className="kamzy-stats__item">
+              <span className="kamzy-stats__number">{counts.clientes}+</span>
+              <span className="kamzy-stats__label">Tecnologías</span>
               <div
-                className="camzy-stats__bar"
+                className="kamzy-stats__bar"
                 style={{ width: `${(counts.clientes / 20) * 100}%` }}
               ></div>
             </div>
           </div>
         </div>
 
-        <div className="camzy-hero__visual">
-          <div className="camzy-terminal">
-            <div className="camzy-terminal__header">
-              <span className="camzy-terminal__dot camzy-terminal__dot--red"></span>
-              <span className="camzy-terminal__dot camzy-terminal__dot--yellow"></span>
-              <span className="camzy-terminal__dot camzy-terminal__dot--green"></span>
-              <span className="camzy-terminal__title">camzy@dev:~</span>
+        <div className="kamzy-hero__visual">
+          <div className="kamzy-terminal">
+            <div className="kamzy-terminal__header">
+              <span className="kamzy-terminal__dot kamzy-terminal__dot--red"></span>
+              <span className="kamzy-terminal__dot kamzy-terminal__dot--yellow"></span>
+              <span className="kamzy-terminal__dot kamzy-terminal__dot--green"></span>
+              <span className="kamzy-terminal__title">kamzy@dev:~</span>
             </div>
 
-            <div className="camzy-terminal__body">
+            <div className="kamzy-terminal__body">
               {terminalText.map((line, index) => (
                 <p key={index} dangerouslySetInnerHTML={{ __html: line }} />
               ))}
-              {terminalIndex < 6 && <span className="camzy-terminal__cursor">█</span>}
+              {terminalIndex < 6 && <span className="kamzy-terminal__cursor">█</span>}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="camzy-services" id="servicios">
-        <div className="camzy-section-header">
-          <h2 className="camzy-section-title">
-            <span className="camzy-section-title__bracket">{"<"}</span>
+      <section className="kamzy-services" id="servicios">
+        <div className="kamzy-section-header">
+          <h2 className="kamzy-section-title">
+            <span className="kamzy-section-title__bracket">{"<"}</span>
             SERVICIOS
-            <span className="camzy-section-title__bracket">{"/>"}</span>
+            <span className="kamzy-section-title__bracket">{"/>"}</span>
           </h2>
-          <p className="camzy-section-subtitle">
+          <p className="kamzy-section-subtitle">
             Lo que hacemos, y lo hacemos espectacular.
           </p>
         </div>
 
-        <div className="camzy-services__grid">
-          <div className="camzy-service">
-            <div className="camzy-service__icon">
+        <div className="kamzy-services__grid">
+          <div className="kamzy-service">
+            <div className="kamzy-service__icon">
               <FaCode />
             </div>
             <h3>Desarrollo Full-Stack</h3>
@@ -571,8 +601,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="camzy-service">
-            <div className="camzy-service__icon">
+          <div className="kamzy-service">
+            <div className="kamzy-service__icon">
               <FaCloud />
             </div>
             <h3>Cloud & DevOps</h3>
@@ -581,8 +611,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="camzy-service">
-            <div className="camzy-service__icon">
+          <div className="kamzy-service">
+            <div className="kamzy-service__icon">
               <FaBolt />
             </div>
             <h3>Inteligencia Artificial</h3>
@@ -592,24 +622,24 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="camzy-service">
-            <div className="camzy-service__icon">
+          <div className="kamzy-service">
+            <div className="kamzy-service__icon">
               <FaShieldAlt />
             </div>
             <h3>Ciberseguridad</h3>
             <p>Auditorías, pentesting y protección de datos. Tu código a salvo.</p>
           </div>
 
-          <div className="camzy-service">
-            <div className="camzy-service__icon">
+          <div className="kamzy-service">
+            <div className="kamzy-service__icon">
               <FaDatabase />
             </div>
             <h3>Big Data</h3>
             <p>Análisis de datos a escala. Transformamos datos en decisiones.</p>
           </div>
 
-          <div className="camzy-service">
-            <div className="camzy-service__icon">
+          <div className="kamzy-service">
+            <div className="kamzy-service__icon">
               <FaServer />
             </div>
             <h3>Arquitectura</h3>
@@ -618,14 +648,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="camzy-tech-banner">
-        <div className="camzy-tech-banner__content">
+      <section className="kamzy-tech-banner">
+        <div className="kamzy-tech-banner__content">
           <h2>TECNOLOGÍAS QUE DOMINAMOS</h2>
 
-          <div className="camzy-tech-groups">
-            <div className="camzy-tech-group">
+          <div className="kamzy-tech-groups">
+            <div className="kamzy-tech-group">
               <h3>Frontend</h3>
-              <div className="camzy-tech-items">
+              <div className="kamzy-tech-items">
                 <span>
                   <FaReact /> React
                 </span>
@@ -641,9 +671,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="camzy-tech-group">
+            <div className="kamzy-tech-group">
               <h3>Backend</h3>
-              <div className="camzy-tech-items">
+              <div className="kamzy-tech-items">
                 <span>
                   <FaNode /> Node.js
                 </span>
@@ -659,9 +689,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="camzy-tech-group">
+            <div className="kamzy-tech-group">
               <h3>Cloud & DevOps</h3>
-              <div className="camzy-tech-items">
+              <div className="kamzy-tech-items">
                 <span>
                   <FaAws /> AWS
                 </span>
@@ -680,9 +710,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="camzy-tech-group">
+            <div className="kamzy-tech-group">
               <h3>Bases de Datos</h3>
-              <div className="camzy-tech-items">
+              <div className="kamzy-tech-items">
                 <span>
                   <SiMongodb /> MongoDB
                 </span>
@@ -698,9 +728,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="camzy-tech-group">
+            <div className="kamzy-tech-group">
               <h3>IA & ML</h3>
-              <div className="camzy-tech-items">
+              <div className="kamzy-tech-items">
                 <span>
                   <SiTensorflow /> TensorFlow
                 </span>
@@ -713,9 +743,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="camzy-tech-group">
+            <div className="kamzy-tech-group">
               <h3>Otros</h3>
-              <div className="camzy-tech-items">
+              <div className="kamzy-tech-items">
                 <span>
                   <SiGraphql /> GraphQL
                 </span>
@@ -731,44 +761,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="camzy-projects" id="proyectos">
-        <div className="camzy-section-header">
-          <h2 className="camzy-section-title">
-            <span className="camzy-section-title__bracket">{"{"}</span>
+      <section className="kamzy-projects" id="proyectos">
+        <div className="kamzy-section-header">
+          <h2 className="kamzy-section-title">
+            <span className="kamzy-section-title__bracket">{"{"}</span>
             PROYECTOS
-            <span className="camzy-section-title__bracket">{"}"}</span>
+            <span className="kamzy-section-title__bracket">{"}"}</span>
           </h2>
-          <p className="camzy-section-subtitle">
+          <p className="kamzy-section-subtitle">
             {showAllProjects
               ? "Todos nuestros proyectos"
               : "Proyectos que transformaron negocios"}
           </p>
         </div>
 
-        <div className="camzy-projects__grid">
+        <div className="kamzy-projects__grid">
           {visibleProjects.map((project) => (
-            <div key={project.id} className="camzy-project">
-              <div className="camzy-project__number">{project.number}</div>
-              <div className="camzy-project__icon">
+            <div key={project.id} className="kamzy-project">
+              <div className="kamzy-project__number">{project.number}</div>
+              <div className="kamzy-project__icon">
                 <project.icon />
               </div>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
 
-              <div className="camzy-project__tags">
+              <div className="kamzy-project__tags">
                 {project.tags.map((tag, index) => (
-                  <span key={index} className="camzy-project__tag">
+                  <span key={index} className="kamzy-project__tag">
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <div className="camzy-project__stats">
+              <div className="kamzy-project__stats">
                 <FaCheck /> {project.stats}
               </div>
 
               <button
-                className="camzy-project__button"
+                className="kamzy-project__button"
                 onClick={() => openProjectModal(project)}
               >
                 Ver proyecto <FaEye />
@@ -777,35 +807,35 @@ export default function HomePage() {
           ))}
         </div>
 
-        <div className="camzy-projects__more">
-          <button className="camzy-btn camzy-btn--primary" onClick={toggleProjects}>
+        <div className="kamzy-projects__more">
+          <button className="kamzy-btn kamzy-btn--primary" onClick={toggleProjects}>
             {showAllProjects ? "VER MENOS PROYECTOS" : "VER TODOS LOS PROYECTOS"}{" "}
             <FaArrowRight />
           </button>
         </div>
 
-        <div className="camzy-projects__counter">
+        <div className="kamzy-projects__counter">
           Mostrando {visibleProjects.length} de {projects.length} proyectos
         </div>
       </section>
 
-      <section className="camzy-team" id="equipo">
-        <div className="camzy-section-header">
-          <h2 className="camzy-section-title">
-            <span className="camzy-section-title__bracket">{"("}</span>
+      <section className="kamzy-team" id="equipo">
+        <div className="kamzy-section-header">
+          <h2 className="kamzy-section-title">
+            <span className="kamzy-section-title__bracket">{"("}</span>
             EQUIPO
-            <span className="camzy-section-title__bracket">{")"}</span>
+            <span className="kamzy-section-title__bracket">{")"}</span>
           </h2>
-          <p className="camzy-section-subtitle">Los cerebros detrás del código</p>
+          <p className="kamzy-section-subtitle">Los cerebros detrás del código</p>
         </div>
 
-        <div className="camzy-team__grid">
-          <div className="camzy-team__member">
-            <div className="camzy-team__image-container">
+        <div className="kamzy-team__grid">
+          <div className="kamzy-team__member">
+            <div className="kamzy-team__image-container">
               <img
                 src={`${import.meta.env.BASE_URL}equipo/Luis Arroyo.png`}
                 alt="Luis Arroyo"
-                className="camzy-team__image"
+                className="kamzy-team__image"
                 onError={(e) => {
                   e.currentTarget.src =
                     "https://via.placeholder.com/300x300/1A1A1A/FF00FF?text=LUIS";
@@ -813,12 +843,12 @@ export default function HomePage() {
               />
             </div>
             <h3>Luis Arroyo</h3>
-            <p className="camzy-team__role">Backend Developer & IA</p>
-            <p className="camzy-team__bio">
+            <p className="kamzy-team__role">Backend Developer & IA</p>
+            <p className="kamzy-team__bio">
               Especialista en backend, APIs escalables y soluciones con inteligencia
               artificial.
             </p>
-            <div className="camzy-team__social">
+            <div className="kamzy-team__social">
               <a href="https://github.com/" target="_blank" rel="noreferrer">
                 <FaGithub />
               </a>
@@ -832,12 +862,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="camzy-team__member">
-            <div className="camzy-team__image-container">
+          <div className="kamzy-team__member">
+            <div className="kamzy-team__image-container">
               <img
                 src={`${import.meta.env.BASE_URL}equipo/Christian Bellasmil.jpeg`}
                 alt="Christian Bellasmil"
-                className="camzy-team__image"
+                className="kamzy-team__image"
                 onError={(e) => {
                   e.currentTarget.src =
                     "https://via.placeholder.com/300x300/1A1A1A/00FFFF?text=CHRISTIAN";
@@ -845,12 +875,12 @@ export default function HomePage() {
               />
             </div>
             <h3>Christian Bellasmil</h3>
-            <p className="camzy-team__role">Frontend Developer & UI/UX</p>
-            <p className="camzy-team__bio">
+            <p className="kamzy-team__role">Frontend Developer & UI/UX</p>
+            <p className="kamzy-team__bio">
               Especialista en interfaces modernas, experiencia de usuario y
               aplicaciones responsivas.
             </p>
-            <div className="camzy-team__social">
+            <div className="kamzy-team__social">
               <a
                 href="https://github.com/ChristianBellasS"
                 target="_blank"
@@ -868,12 +898,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="camzy-team__member">
-            <div className="camzy-team__image-container">
+          <div className="kamzy-team__member">
+            <div className="kamzy-team__image-container">
               <img
                 src={`${import.meta.env.BASE_URL}equipo/AlexisChaname.jpeg`}
                 alt="Alexis Chaname"
-                className="camzy-team__image"
+                className="kamzy-team__image"
                 onError={(e) => {
                   e.currentTarget.src =
                     "https://via.placeholder.com/300x300/1A1A1A/FF00FF?text=ALEXIS";
@@ -881,11 +911,11 @@ export default function HomePage() {
               />
             </div>
             <h3>Alexis Chanamé</h3>
-            <p className="camzy-team__role">Software Architect & System Design</p>
-            <p className="camzy-team__bio">
+            <p className="kamzy-team__role">Software Architect & System Design</p>
+            <p className="kamzy-team__bio">
               Especialista en diseño de sistemas escalables y definición de arquitecturas modernas.
             </p>
-            <div className="camzy-team__social">
+            <div className="kamzy-team__social">
               <a
                 href="https://github.com/AlexD-13/"
                 target="_blank"
@@ -903,12 +933,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="camzy-team__member">
-            <div className="camzy-team__image-container">
+          <div className="kamzy-team__member">
+            <div className="kamzy-team__image-container">
               <img
                 src={`${import.meta.env.BASE_URL}equipo/Alejandro Purizaca.jpeg`}
                 alt="Alejandro Purizaca"
-                className="camzy-team__image"
+                className="kamzy-team__image"
                 onError={(e) => {
                   e.currentTarget.src =
                     "https://via.placeholder.com/300x300/1A1A1A/FF00FF?text=ALEJANDRO";
@@ -916,11 +946,11 @@ export default function HomePage() {
               />
             </div>
             <h3>Alejandro Purizaca</h3>
-            <p className="camzy-team__role">DevOps & Cloud Security</p>
-            <p className="camzy-team__bio">
+            <p className="kamzy-team__role">DevOps & Cloud Security</p>
+            <p className="kamzy-team__bio">
               Especialista en infraestructura, automatización y seguridad en la nube.
             </p>
-            <div className="camzy-team__social">
+            <div className="kamzy-team__social">
               <a
                 href="https://github.com/AlesisxHz-afk/"
                 target="_blank"
@@ -940,41 +970,41 @@ export default function HomePage() {
 
         </div>
 
-        <div className="camzy-team__badge">
+        <div className="kamzy-team__badge">
           <FaUsers /> +4 talentos en expansión
         </div>
       </section>
 
-      <section className="camzy-contact" id="contacto">
-        <div className="camzy-section-header">
-          <h2 className="camzy-section-title">
-            <span className="camzy-section-title__bracket">{"["}</span>
+      <section className="kamzy-contact" id="contacto">
+        <div className="kamzy-section-header">
+          <h2 className="kamzy-section-title">
+            <span className="kamzy-section-title__bracket">{"["}</span>
             CONTACTO
-            <span className="camzy-section-title__bracket">{"]"}</span>
+            <span className="kamzy-section-title__bracket">{"]"}</span>
           </h2>
-          <p className="camzy-section-subtitle">
+          <p className="kamzy-section-subtitle">
             Conecta con nosotros de la forma que prefieras
           </p>
         </div>
 
-        <div className="camzy-contact__container">
-          <div className="camzy-contact__info-centered">
+        <div className="kamzy-contact__container">
+          <div className="kamzy-contact__info-centered">
             <h3>¿Listo para innovar?</h3>
-            <p className="camzy-contact__description">
+            <p className="kamzy-contact__description">
               Estamos a un mensaje de distancia para transformar tu idea en
               realidad. Elige el canal que prefieras y hablemos de tu próximo
               proyecto tecnológico.
             </p>
 
-            <div className="camzy-contact__cta">
+            <div className="kamzy-contact__cta">
               <button
-                className="camzy-btn camzy-btn--primary camzy-btn--large"
+                className="kamzy-btn kamzy-btn--primary kamzy-btn--large"
                 onClick={handleContact}
               >
                 <FaEnvelope /> CONTACTAR POR CORREO
               </button>
               <button
-                className="camzy-btn camzy-btn--whatsapp camzy-btn--large"
+                className="kamzy-btn kamzy-btn--whatsapp kamzy-btn--large"
                 onClick={handleWhatsApp}
               >
                 <FaWhatsapp /> ESCRIBIR POR WHATSAPP
@@ -984,29 +1014,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="camzy-footer">
-        <div className="camzy-footer__main">
-          <div className="camzy-footer__brand">
-            <div className="camzy-logo camzy-logo--footer">
-              <span className="camzy-logo__text">CAMZY</span>
-              <span className="camzy-logo__cursor">_</span>
+      <footer className="kamzy-footer">
+        <div className="kamzy-footer__main">
+          <div className="kamzy-footer__brand">
+            <div className="kamzy-logo kamzy-logo--footer">
+              <img src={logoSrc} alt="KAMZY Logo" className="kamzy-logo__image" />
+              <span className="kamzy-logo__text">KAMZY</span>
+              <span className="kamzy-logo__cursor">_</span>
             </div>
             <p>Innovación tecnológica sin límites.</p>
 
-            <div className="camzy-social">
-              <a href="#" className="camzy-social__link">
+            <div className="kamzy-social">
+              <a href="#" className="kamzy-social__link">
                 <FaGithub />
               </a>
-              <a href="#" className="camzy-social__link">
+              <a href="#" className="kamzy-social__link">
                 <FaLinkedin />
               </a>
-              <a href="#" className="camzy-social__link">
+              <a href="#" className="kamzy-social__link">
                 <FaTwitter />
               </a>
             </div>
           </div>
 
-          <div className="camzy-footer__links">
+          <div className="kamzy-footer__links">
             <div>
               <h4>SOLUCIONES</h4>
               <ul>
@@ -1045,85 +1076,85 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="camzy-footer__bottom">
-          <p>© 2026 CAMZY Tech. Todos los derechos reservados.</p>
-          <div className="camzy-footer__badge">
+        <div className="kamzy-footer__bottom">
+          <p>© 2026 KAMZY Tech. Todos los derechos reservados.</p>
+          <div className="kamzy-footer__badge">
             <FaHeart /> Made with love in Perú
           </div>
         </div>
       </footer>
 
-      <div className="camzy-floating-btn" onClick={handleContact}>
-        <button className="camzy-floating-btn__inner">
+      <div className="kamzy-floating-btn" onClick={handleContact}>
+        <button className="kamzy-floating-btn__inner">
           <FaEnvelope />
-          <span className="camzy-floating-btn__tooltip">¿Hablamos?</span>
+          <span className="kamzy-floating-btn__tooltip">¿Hablamos?</span>
         </button>
       </div>
 
       <div
-        className="camzy-scroll-top"
+        className="kamzy-scroll-top"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       >
         <FaArrowUp />
       </div>
 
       {isModalOpen && selectedProject && (
-        <div className="camzy-modal" onClick={closeModal}>
-          <div className="camzy-modal__content" onClick={(e) => e.stopPropagation()}>
-            <button className="camzy-modal__close" onClick={closeModal}>
+        <div className="kamzy-modal" onClick={closeModal}>
+          <div className="kamzy-modal__content" onClick={(e) => e.stopPropagation()}>
+            <button className="kamzy-modal__close" onClick={closeModal}>
               <FaTimes />
             </button>
 
-            <div className="camzy-modal__gallery">
-              <div className="camzy-modal__image-container">
+            <div className="kamzy-modal__gallery">
+              <div className="kamzy-modal__image-container">
                 <img
                   src={selectedProject.images[currentImageIndex]}
                   alt={`${selectedProject.title} - Imagen ${currentImageIndex + 1}`}
-                  className="camzy-modal__image"
+                  className="kamzy-modal__image"
                 />
 
                 <button
-                  className="camzy-modal__nav camzy-modal__nav--prev"
+                  className="kamzy-modal__nav kamzy-modal__nav--prev"
                   onClick={prevImage}
                 >
                   <FaChevronLeft />
                 </button>
 
                 <button
-                  className="camzy-modal__nav camzy-modal__nav--next"
+                  className="kamzy-modal__nav kamzy-modal__nav--next"
                   onClick={nextImage}
                 >
                   <FaChevronRight />
                 </button>
               </div>
 
-              <div className="camzy-modal__info">
+              <div className="kamzy-modal__info">
                 <h2>{selectedProject.title}</h2>
                 <p>{selectedProject.description}</p>
 
-                <div className="camzy-modal__tags">
+                <div className="kamzy-modal__tags">
                   {selectedProject.tags.map((tag, index) => (
-                    <span key={index} className="camzy-modal__tag">
+                    <span key={index} className="kamzy-modal__tag">
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="camzy-modal__stats">
+                <div className="kamzy-modal__stats">
                   <FaCheck /> {selectedProject.stats}
                 </div>
 
-                <div className="camzy-modal__counter">
+                <div className="kamzy-modal__counter">
                   <FaImage /> {currentImageIndex + 1} / {selectedProject.images.length}
                 </div>
               </div>
             </div>
 
-            <div className="camzy-modal__thumbnails">
+            <div className="kamzy-modal__thumbnails">
               {selectedProject.images.map((img, index) => (
                 <div
                   key={index}
-                  className={`camzy-modal__thumbnail ${
+                  className={`kamzy-modal__thumbnail ${
                     index === currentImageIndex ? "active" : ""
                   }`}
                   onClick={() => setCurrentImageIndex(index)}
